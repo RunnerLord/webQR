@@ -4,6 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Badges</title>
+    <script>
+      window.onload = function() {
+        var savedVariable = localStorage.getItem("badge");
+        console.log(savedVariable);
+      };
+    </script>
     <style>
         * {
           font-family: system-ui;
@@ -142,8 +148,8 @@
         
                 if (code) {
                   alert(code.data);
-                  var decode = atob(code.data);
-                  console.log(decode)
+                  var decodedBadge = atob(code.data);
+                  localStorage.setItem("badge", decodedBadge);
                 }
               }, 1000);
             });

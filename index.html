@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera display</title>
+    <title>QR Badges</title>
     <style>
         * {
           font-family: system-ui;
@@ -18,7 +18,6 @@
             width: 100vw;
             height: 100vh;
             object-fit: cover;
-            transform: rotateY(180deg);
         }
         .menu {
           z-index: 3;
@@ -42,13 +41,10 @@
           animation: button-click 0.3s linear;
         }
         @keyframes button-click {
-          0% {
+          from {
             transform: scale(1) translateX(-50%);
           }
-          50% {
-            transform: scale(0.8) translateX(-50%);
-          }
-          100% {
+          to {
             transform: scale(1 translateX(-50%));
           }
         }
@@ -62,7 +58,7 @@
           right: 25px;
           border-radius: 25px;
           opacity: 0;
-          transition: opacity 0.1s ease-in-out;
+          transition: opacity 0.3s ease-in-out;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -146,6 +142,8 @@
         
                 if (code) {
                   alert(code.data);
+                  var decode = atob(code.data);
+                  console.log(decode)
                 }
               }, 1000);
             });
@@ -189,14 +187,14 @@
                 myLogo1.style.opacity = 0;
                 myLogo2.style.opacity = 1;
                 myDiv.classList.add("active");
-              }, 100);
+              }, 300);
             } else {
               myDiv.classList.remove("active");
               myLogo1.style.opacity = 1;
               myLogo2.style.opacity = 0;
               setTimeout(() => {
                 myDiv.style.display = "none";
-              }, 100);
+              }, 300);
             }
           }
         </script>

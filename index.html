@@ -5,66 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camera display</title>
     <style>
+        * {
+          font-family: system-ui;
+        }
         body {
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: black;
+            background-color: #1e1e1e;
         }
         video {
             width: 100vw;
             height: 100vh;
             object-fit: cover;
+            transform: rotateY(180deg);
         }
         .menu {
+          z-index: 3;
           position: fixed;
-          width: 50px;
+          width: 75px;
           height: 50px;
-          border-radius: 25px;
-          background-color: red;
-          right: 0px;
+          border-radius: 15px;
+          background-color: #1e1e1e;
+          left: 50%;
+          transform: translateX(-50%);
           bottom: 0px;
-          margin-right: 10px;
-          margin-bottom: 10px;
+          margin-bottom: 25px;
+          color: #fff;
+          text-align: center;
+          line-height: 50px;
+          font-size: 25px;
+          cursor: pointer;
+          user-select: none;
+          transition: background-color 0.3s ease-in-out;
+        }
+        .menu:hover {
+          background-color: #2c2c2c;
+        }
+        .menu:active {
+          animation: button-click 0.3s linear;
+        }
+        @keyframes button-click {
+          0% {
+            transform: scale(1) translateX(-50%);
+          }
+          50% {
+            transform: scale(0.8) translateX(-50%);
+          }
+          100% {
+            transform: scale(1 translateX(-50%));
+          }
+        }
+        .menuOverlay {
+          z-index: 1;
+          position: absolute;
+          background-color: #1e1e1e;
+          top: 25px;
+          bottom: 100px;
+          left: 25px;
+          right: 25px;
+          border-radius: 25px;
+          opacity: 0;
+          transition: opacity 0.1s ease-in-out;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        .menuOverlay.active {
+          opacity: 1;
+        }
+        .overlayContainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+        }
+        .menuBadge {
+          width: 256px;
+          height: 256px;
+          border-radius: 256px;
+          background-color: #2c2c2c;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        p {
+          background-color: #2c2c2c;
+          border-radius: 25px;
+          padding: 5px 25px;
+          letter-spacing: 3px;
+        }
+        p .value {
+          color: #fff;
+        }
+        p .required {
+          color: #7b7b7b;
         }
     </style>
   </head>
   <body>
-    <div class="menu"></div>
     <div class="container">
         <video id="video" autoplay></video>
         <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
         <script>
           const video = document.getElementById("video");
         
-          // Check if the browser supports the getUserMedia() method
           if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            // Request access to the user's camera
             navigator.mediaDevices.getUserMedia({ 
               video: {
-                facingMode: { exact: "environment" }
+                facingMode: { exact: "user" }
               }
             }).then(function (stream) {
-              // Set the video source to the user's camera stream
               video.srcObject = stream;
               video.play();
         
-              // Start scanning for QR codes
               setInterval(function () {
-                // Create a temporary canvas element to hold the current video frame
                 const canvas = document.createElement("canvas");
                 const ctx = canvas.getContext("2d");
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
                 ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
-                // Get the image data from the temporary canvas
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         
-                // Decode the QR code from the image data
                 const code = jsQR(imageData.data, imageData.width, imageData.height);
         
-                // If a QR code was found, display its contents in an alert box
                 if (code) {
                   alert(code.data);
                 }
@@ -72,11 +139,36 @@
             });
           }
           else {
-            // The getUserMedia() method is not supported by the browser
             alert("Sorry, your browser does not support camera access.");
           }
         </script>
-        <div class="menu"></div>
+        <button onclick="showContent()"><div class="menu">?</div></button>
+        <div id="overlay" class="menuOverlay" style="display: none;">
+          <div class="overlayContainer">
+            <div class="menuBadge">
+              <svg width="129" height="156" viewBox="0 0 129 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M109.765 19.2548C134.758 44.2484 134.758 84.7709 109.765 109.764L64.5097 155.019L19.2548 109.764C-5.73871 84.7709 -5.73871 44.2484 19.2548 19.2548C44.2484 -5.73872 84.771 -5.73872 109.765 19.2548ZM47.5391 81.4802C56.9117 90.8528 72.1077 90.8528 81.4802 81.4802C90.8528 72.1076 90.8528 56.9117 81.4802 47.5391C72.1077 38.1665 56.9117 38.1665 47.5391 47.5391C38.1665 56.9117 38.1665 72.1076 47.5391 81.4802Z" fill="white"/>
+              </svg>
+            </div>
+            <p><span class="value">1</span><span class="required">/3</span></p>
+          </div>
+        </div>
+        <script>
+          function showContent() {        
+            const myDiv = document.getElementById("overlay");
+            if (myDiv.style.display === "none") {
+              myDiv.style.display = "block";
+              setTimeout(() => {
+                myDiv.classList.add("active");
+              }, 100);
+            } else {
+              myDiv.classList.remove("active");
+              setTimeout(() => {
+                myDiv.style.display = "none";
+              }, 100);
+            }
+          }
+        </script>
     </div>
   </body>
 </html>

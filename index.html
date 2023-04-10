@@ -160,27 +160,35 @@
                 if (code) {
                   var decodedBadge = atob(code.data);
 
-                  if (localStorage.getItem('badgeList')) {
-                    var badgeList = JSON.parse(localStorage.getItem('badgeList'));
-                    badgeList.push(decodedBadge);
-                    localStorage.setItem('badgeList', JSON.stringify(badgeList));
-                  } else {
-                    var badgeList = [decodedBadge];
-                    localStorage.setItem('badgeList', JSON.stringify(badgeList));
+                  var matches = JSON.parse(localStorage.getItem('badgeList')) || [];
+
+                  var badgeId = decodedBadge.substr(-4);
+
+                  alert(badgeId);
+
+                  if (decodedBadge.length >= 9) {
+                    if (localStorage.getItem('badgeList')) {
+                      var badgeList = JSON.parse(localStorage.getItem('badgeList'));
+                      badgeList.push(decodedBadge);
+                      localStorage.setItem('badgeList', JSON.stringify(badgeList));
+                    } else {
+                      var badgeList = [decodedBadge];
+                      localStorage.setItem('badgeList', JSON.stringify(badgeList));
+                    }
+
+                    var newXP = parseInt(decodedBadge.charAt(7));
+
+                    if (localStorage.getItem('userXP')) {
+                      var userXP = parseInt(localStorage.getItem('userXP'));
+                      var addedXP = userXP + newXP;
+                      localStorage.setItem('userXP', addedXP);
+                    } else {
+                      localStorage.setItem('userXP', newXP);
+                    }
+
+                    alert(JSON.parse(localStorage.getItem('badgeList')));
+                    alert(parseInt(localStorage.getItem('userXP')));
                   }
-
-                  var newXP = parseInt(decodedBadge.charAt(7));
-
-                  if (localStorage.getItem('userXP')) {
-                    var userXP = parseInt(localStorage.getItem('userXP'));
-                    var addedXP = userXP + newXP;
-                    localStorage.setItem('userXP', addedXP);
-                  } else {
-                    localStorage.setItem('userXP', newXP);
-                  }
-
-                  alert(JSON.parse(localStorage.getItem('badgeList')));
-                  alert(parseInt(localStorage.getItem('userXP')));
                 }
               }, 1000);
             });

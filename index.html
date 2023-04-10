@@ -153,7 +153,6 @@
                 const code = jsQR(imageData.data, imageData.width, imageData.height);
         
                 if (code) {
-                  alert(code.data);
                   var decodedBadge = atob(code.data);
 
                   if (localStorage.getItem('badgeList')) {
@@ -164,6 +163,17 @@
                     var badgeList = [decodedBadge];
                     localStorage.setItem('badgeList', JSON.stringify(badgeList));
                   }
+
+                  if (localStorage.getItem('userXP')) {
+                    var userXP = parseInt(localStorage.getItem('userXP'));
+                    var addedXP = userXP + parseInt(decodedBadge.charAt(7));
+                    localStorage.setItem('userXP', addedXP);
+                  } else {
+                    localStorage.setItem('userXP', userXP);
+                  }
+
+                  alert(JSON.parse(localStorage.getItem('badgeList')));
+                  alert(parseInt(localStorage.getItem('userXP')));
                 }
               }, 1000);
             });

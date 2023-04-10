@@ -164,12 +164,14 @@
                     localStorage.setItem('badgeList', JSON.stringify(badgeList));
                   }
 
+                  var newXP = parseInt(decodedBadge.charAt(7));
+
                   if (localStorage.getItem('userXP')) {
                     var userXP = parseInt(localStorage.getItem('userXP'));
-                    var addedXP = userXP + parseInt(decodedBadge.charAt(7));
+                    var addedXP = userXP + newXP;
                     localStorage.setItem('userXP', addedXP);
                   } else {
-                    localStorage.setItem('userXP', userXP);
+                    localStorage.setItem('userXP', newXP);
                   }
 
                   alert(JSON.parse(localStorage.getItem('badgeList')));

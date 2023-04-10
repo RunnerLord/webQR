@@ -6,7 +6,7 @@
     <title>QR Badges</title>
     <script>
       window.onload = function() {
-        let badgeArray = JSON.parse(localStorage.getItem('badgeArray'));
+        let badgeArray = localStorage.getItem('badgeArray');
         if (badgeArray) {
           alert(badgeArray);
         }
@@ -154,14 +154,13 @@
                 if (code) {
                   alert(code.data);
                   var decodedBadge = atob(code.data);
-                  localStorage.setItem("badge", decodedBadge);
 
                   let badgeArray = JSON.parse(localStorage.getItem('badgeArray'));
 
                   if (!badgeArray) {
-                    badgeArray = [code.data];
+                    badgeArray = [decodedBadge];
                   } else {
-                    myArray.push(code.data);
+                    myArray.push(decodedBadge);
                   }
 
                   localStorage.setItem('badgeArray', JSON.stringify(badgeArray));

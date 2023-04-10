@@ -158,10 +158,10 @@
 
                   if (localStorage.getItem('badgeList')) {
                     var badgeList = JSON.parse(localStorage.getItem('badgeList'));
-                    badgeList.push('newBadge');
+                    badgeList.push(decodedBadge);
                     localStorage.setItem('badgeList', JSON.stringify(badgeList));
                   } else {
-                    var badgeList = ['newBadge'];
+                    var badgeList = [decodedBadge];
                     localStorage.setItem('badgeList', JSON.stringify(badgeList));
                   }
                 }

@@ -11,6 +11,10 @@
           alert(badgeList.length);
           alert(badgeList);
         }
+
+        var value = parseInt(localStorage.getItem('userXP'));
+        var pSpan1 = document.querySelector(".value");
+        pSpan1.textContent = value;
       };
     </script>
     <style>

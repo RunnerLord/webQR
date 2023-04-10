@@ -1,19 +1,19 @@
 // Define a function to show the badge overlay
 function showContent() {        
     const myDiv = document.getElementById("overlay");
-    const myLogo1 = document.getElementById("logo1");
-    const myLogo2 = document.getElementById("logo2");
+    const myIcon1 = document.getElementById("icon1");
+    const myIcon2 = document.getElementById("icon2");
     if (myDiv.style.display === "none") {
       myDiv.style.display = "block";
       setTimeout(() => {
-        myLogo1.style.opacity = 0;
-        myLogo2.style.opacity = 1;
+        myIcon1.style.opacity = 0;
+        myIcon2.style.opacity = 1;
         myDiv.classList.add("active");
       }, 300);
     } else {
       myDiv.classList.remove("active");
-      myLogo1.style.opacity = 1;
-      myLogo2.style.opacity = 0;
+      myIcon1.style.opacity = 1;
+      myIcon2.style.opacity = 0;
       setTimeout(() => {
         myDiv.style.display = "none";
       }, 300);

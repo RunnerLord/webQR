@@ -6,9 +6,10 @@
     <title>QR Badges</title>
     <script>
       window.onload = function() {
-        let badgeArray = localStorage.getItem('badgeArray');
-        if (badgeArray) {
-          alert(badgeArray);
+        var badgeList = JSON.parse(localStorage.getItem('badgeList'));
+        if (badgeList) {
+          alert(badgeList.length);
+          alert(badgeList);
         }
       };
     </script>
@@ -155,15 +156,14 @@
                   alert(code.data);
                   var decodedBadge = atob(code.data);
 
-                  let badgeArray = JSON.parse(localStorage.getItem('badgeArray'));
-
-                  if (!badgeArray) {
-                    badgeArray = [decodedBadge];
+                  if (localStorage.getItem('badgeList')) {
+                    var badgeList = JSON.parse(localStorage.getItem('badgeList'));
+                    badgeList.push('newBadge');
+                    localStorage.setItem('badgeList', JSON.stringify(badgeList));
                   } else {
-                    myArray.push(decodedBadge);
+                    var badgeList = ['newBadge'];
+                    localStorage.setItem('badgeList', JSON.stringify(badgeList));
                   }
-
-                  localStorage.setItem('badgeArray', JSON.stringify(badgeArray));
                 }
               }, 1000);
             });
@@ -192,7 +192,7 @@
               <img src="./lvlBadge1.svg" alt="charset">
               <p class="badgeLvl">1</p>
             </div>
-            <p class="xp"><span class="value">1</span><span class="required">/3</span></p>
+            <p class="xp"><span class="value">0</span><span class="required">/0</span></p>
           </div>
         </div>
         <script>

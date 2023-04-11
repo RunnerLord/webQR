@@ -21,7 +21,7 @@ function showContent() {
 }
 
 function updateLvl(level) {
-	var myLvl = document.getElementsByClassName("myVariable");
+	var myLvl = document.getElementsByClassName("badgeLvl");
   myLvl.textContent = level
 }
   

@@ -19,6 +19,11 @@ function showContent() {
       }, 300);
     }
 }
+
+function updateLvl(level) {
+	var myLvl = document.getElementsByClassName("myVariable");
+  myLvl.textContent = level
+}
   
   // When the page has finished loading, check if the user has earned any badges and update their XP accordingly
   window.onload = function() {
@@ -30,7 +35,9 @@ function showContent() {
     var value = parseInt(localStorage.getItem('userXP'));
     if (value) {
       var pSpan1 = document.querySelector(".value");
-      pSpan1.textContent = value.toString();
+      var level = value.toString()
+      pSpan1.textContent = level;
+      updateLvl(level);
     }
   };
   
@@ -89,7 +96,9 @@ function showContent() {
             alert(JSON.parse(localStorage.getItem('badgeList')));
             alert(parseInt(localStorage.getItem('userXP')));
             var pSpan1 = document.querySelector(".value");
-            pSpan1.textContent = value.toString();
+            var level = value.toString();
+            pSpan1.textContent = level;
+            updateLvl(level);
           }
         }
       }, 1000);

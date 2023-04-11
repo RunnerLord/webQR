@@ -21,8 +21,8 @@ function showContent() {
 }
 
 function updateLvl(level) {
-	var myLvl = document.getElementsByClassName("badgeLvl");
-  myLvl.textContent = level
+	var myLvl = document.querySelector(".badgeLvl");
+  myLvl.textContent = level;
 }
   
   // When the page has finished loading, check if the user has earned any badges and update their XP accordingly

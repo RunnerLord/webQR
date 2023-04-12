@@ -6,151 +6,150 @@
 }
 
 * {
-    font-family: system-ui;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background: white;
-  }
-  
-  video {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-  }
-  
-  .menu {
-    position: fixed;
-    z-index: 3;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75px;
-    height: 50px;
-    border-radius: 15px;
-    background: var(--slight-black);
-    margin-bottom: 25px;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.3s ease-in-out;
-  }
-  
-  .menu:hover {
-    background-color: var(--dark-grey);
-  }
-  
-  .menu:active {
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  .menuOverlay {
-    position: absolute;
-    z-index: 1;
-    inset: 25px 25px 100px;
-    border-radius: 25px;
-    background: var(--slight-black);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  .menuOverlay.active {
-    opacity: 1;
-  }
-  
-  .overlayContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .menuBadge {
-    min-width: 256px;
-    min-height: 256px;
-    border-radius: 50%;
-    background: var(--dark-grey);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: content-box;
-    margin-top: 50px;
-  }
+  font-family: system-ui;
+}
 
-  .menuBadge img {
-    width: 75%;
-    aspect-ratio: 1/1;
-  }
-  
-  .badgeLvl {
-    position: absolute;
-    font: 900 40px/48px system-ui;
-    color: var(--dark-grey);
-  }
-  
-  .xp {
-    background-color: var(--dark-grey);
-    border-radius: 25px;
-    padding: 5px 25px;
-    margin: 25px 0;
-  }
-  
-  .xp .value {
-    color: white;
-  }
-  
-  .xp .required {
-    color: var(--light-grey);
-  }
-  
-  .icon1, .icon2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  .icon2 {
-    opacity: 0;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 
-  .badgeGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-    grid-gap: 5px 5px;
-    width: 50%;
-    aspect-ratio: 1/1;
-    overflow: auto;
-    margin-bottom: 50px;
-    padding-right: 5px;
-    scroll-snap-type: y mandatory;
-  }
+video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
 
-  .gridItem {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
-    background: var(--dark-grey);
-    scroll-snap-align: start;
-  }
+.menu {
+  position: fixed;
+  z-index: 3;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75px;
+  height: 50px;
+  border-radius: 15px;
+  background: var(--slight-black);
+  margin-bottom: 25px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s ease-in-out;
+}
 
-  ::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 128px;
-    background: var(--dark-grey);
-  }
+.menu:hover {
+  background-color: var(--dark-grey);
+}
 
-  ::-webkit-scrollbar-thumb {
-    border-radius: 128px;
-    background: var(--slight-white) content-box;
-  }
+.menu:active {
+  -webkit-tap-highlight-color: transparent;
+}
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+.menuOverlay {
+  position: absolute;
+  z-index: 1;
+  inset: 25px;
+  border-radius: 25px;
+  background: var(--slight-black);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.menuOverlay.active {
+  opacity: 1;
+}
+
+.overlayContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.menuBadge {
+  min-width: 256px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: var(--dark-grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  margin-top: 50px;
+}
+
+.menuBadge img {
+  width: 75%;
+  aspect-ratio: 1/1;
+}
+
+.badgeLvl {
+  position: absolute;
+  font: 900 40px/48px system-ui;
+  color: var(--dark-grey);
+}
+
+.xp {
+  background-color: var(--dark-grey);
+  border-radius: 25px;
+  padding: 5px 25px;
+  margin: 25px 0;
+}
+
+.xp .value {
+  color: white;
+}
+
+.xp .required {
+  color: var(--light-grey);
+}
+
+.menu * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.menu .icon1 {
+  opacity: 1;
+}
+
+.badgeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  grid-auto-rows: 50px;
+  grid-gap: 5px;
+  width: 50%;
+  aspect-ratio: 1/1;
+  overflow: auto;
+  margin-bottom: 50px;
+  padding-right: 5px;
+  scroll-snap-type: y mandatory;
+}
+
+.gridItem {
+  width: 100%;
+  border-radius: 5px;
+  background: var(--dark-grey);
+  scroll-snap-align: start;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 128px;
+  background: var(--dark-grey);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 128px;
+  background: var(--slight-white) content-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -48,7 +48,10 @@ video {
 .menuOverlay {
   position: absolute;
   z-index: 1;
-  inset: 25px 25px 100px 25px !important;
+  top: 25px;
+  right: 25px;
+  bottom: 100px;
+  left: 25px;
   border-radius: 25px;
   background: var(--slight-black);
   opacity: 0;

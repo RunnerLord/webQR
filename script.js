@@ -108,3 +108,16 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 } else {
   alert("Sorry, your browser does not support camera access.");
 }
+
+level = 4;
+
+if (level >= 15) {
+  document.getElementById("myBadge").src = "assets/lvlBadge3.svg";
+  document.querySelector(".required").innerHTML = " / &infin;";
+} else if (level >= 5) {
+  document.getElementById("myBadge").src = "assets/lvlBadge2.svg";
+  document.querySelector(".required").innerHTML = " / 15";
+} else {
+  document.getElementById("myBadge").src = "assets/lvlBadge1.svg";
+  document.querySelector(".required").innerHTML = " / 5";
+}

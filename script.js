@@ -69,38 +69,41 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
       if (code) {
         const decodedBadge = atob(code.data);
-        const matches = JSON.parse(localStorage.getItem('badgeList')) || [];
         const badgeId = decodedBadge.toString().substr(-4);
 
         console.log(badgeId);
 
-        if (decodedBadge.length >= 9) {
-          if (localStorage.getItem('badgeList')) {
-            let badgeList = JSON.parse(localStorage.getItem('badgeList'));
-            badgeList.push(decodedBadge);
-            localStorage.setItem('badgeList', JSON.stringify(badgeList));
-          } else {
-            let badgeList = [decodedBadge];
-            localStorage.setItem('badgeList', JSON.stringify(badgeList));
+        var badgeList = localStorage.getItem('badgeList');
+
+        if (badgeList && badgeList.includes(decodedBadge)) {
+          if (decodedBadge.length >= 9) {
+            if (localStorage.getItem('badgeList')) {
+              let badgeList = JSON.parse(localStorage.getItem('badgeList'));
+              badgeList.push(decodedBadge);
+              localStorage.setItem('badgeList', JSON.stringify(badgeList));
+            } else {
+              let badgeList = [decodedBadge];
+              localStorage.setItem('badgeList', JSON.stringify(badgeList));
+            }
+  
+            const newXP = parseInt(decodedBadge.charAt(7));
+  
+            if (localStorage.getItem('userXP')) {
+              const userXP = parseInt(localStorage.getItem('userXP'));
+              const addedXP = userXP + newXP;
+              localStorage.setItem('userXP', addedXP);
+            } else {
+              localStorage.setItem('userXP', newXP);
+            }
+  
+            console.log(JSON.parse(localStorage.getItem('badgeList')));
+            console.log(parseInt(localStorage.getItem('userXP')));
+  
+            const pSpan1 = document.querySelector(".value");
+            const level = value.toString();
+            pSpan1.textContent = level;
+            updateLvl(level);
           }
-
-          const newXP = parseInt(decodedBadge.charAt(7));
-
-          if (localStorage.getItem('userXP')) {
-            const userXP = parseInt(localStorage.getItem('userXP'));
-            const addedXP = userXP + newXP;
-            localStorage.setItem('userXP', addedXP);
-          } else {
-            localStorage.setItem('userXP', newXP);
-          }
-
-          console.log(JSON.parse(localStorage.getItem('badgeList')));
-          console.log(parseInt(localStorage.getItem('userXP')));
-
-          const pSpan1 = document.querySelector(".value");
-          const level = value.toString();
-          pSpan1.textContent = level;
-          updateLvl(level);
         }
       }
     }, 1000);

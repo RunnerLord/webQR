@@ -74,8 +74,22 @@ function updateLvl() {
     }
 }
 
+function updateReq() {
+    if (level >= 15) {
+        document.getElementById("required").textContent = " / &infin;"
+        document.getElementById("badgeLevel").src = "assets/badgeLevel3.svg"
+    } else if (level >= 5) {
+        document.getElementById("required").textContent = " / 15"
+        document.getElementById("badgeLevel").src = "assets/badgeLevel2.svg"
+    } else {
+        document.getElementById("required").textContent = " / 5"
+        document.getElementById("badgeLevel").src = "assets/badgeLevel1.svg"
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     updateLvl();
+    updateReq();
 });
 
 function toggle() {

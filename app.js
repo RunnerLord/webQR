@@ -2,7 +2,7 @@ const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: 'user' } } })
+navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: 'environment' } } })
     .then((stream) => {
         video.srcObject = stream;
         video.play();

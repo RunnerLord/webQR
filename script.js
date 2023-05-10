@@ -112,8 +112,6 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
   alert("Sorry, your browser does not support camera access.");
 }
 
-level = 4;
-
 if (level >= 15) {
   document.getElementById("myBadge").src = "assets/lvlBadge3.svg";
   document.querySelector(".required").innerHTML = " / &infin;";

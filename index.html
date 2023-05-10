@@ -9,6 +9,7 @@
   <body>
     <div class="container">
       <video id="video" autoplay></video>
+      <canvas id="canvas"></canvas>
       <button onclick="showContent()">
         <div class="menu">
           <img id="icon1" class="icon1" src="assets/icon1.svg" alt="charset">
@@ -19,9 +20,9 @@
         <div class="overlayContainer">
           <div class="menuBadge">
             <img id="myBadge" src="assets/lvlBadge1.svg" alt="charset">
-            <p class="badgeLvl">0</p>
+            <p class="badgeLvl" id="level">0</p>
           </div>
-          <p class="xp"><span class="value">0</span><span class="required" id="mySpan"> / 0</span></p>
+          <p class="xp"><span class="value">0</span><span class="required" id="progress"> / 0</span></p>
           <div class="badgeGrid">
             <div class="gridItem"></div>
             <div class="gridItem"></div>
@@ -31,6 +32,6 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
-    <script src="script.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>

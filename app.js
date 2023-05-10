@@ -57,23 +57,44 @@ function addQRData(data) {
 
 function updateLvl() {
     const badgeList = localStorage.getItem("badgeList");
+    console.log(badgeList);
 
-    if (badgeList !== null && badgeList !== undefined) {
+    if (badgeList !== null) {
         try {
             const parsedBadgeList = JSON.parse(badgeList);
             const level = Object.keys(parsedBadgeList).length;
-            console.log(level)
             document.getElementById("level").textContent = level;
-            document.getElementById("progress").textContent = " / " + level;
+            document.getElementById("progress").textContent = level;
         } catch (error) {
             console.error("Error parsing badgeList:", error);
         }
     } else {
         document.getElementById("level").textContent = "0";
-        document.getElementById("progress").textContent = " / 0";
+        document.getElementById("progress").textContent = "0";
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     updateLvl();
 });
+
+function toggle() {
+    const menu = document.getElementById("menu");
+    const buttonIcon = document.getElementById("buttonIcon");
+
+    if (menu.style.display === "none") {
+        menu.style.display = "flex";
+        buttonIcon.src = "assets/buttonIcon2.svg";
+        setTimeout(function() {
+            menu.style.opacity = "0";
+            menu.style.opacity = "1";
+        }, 100);
+    } else {
+        menu.style.opacity = "1";
+        menu.style.opacity = "0";
+        setTimeout(function() {
+            menu.style.display = "none";
+            buttonIcon.src = "assets/buttonIcon1.svg";
+        }, 100);
+    }
+}

@@ -1,155 +1,95 @@
 :root {
-  --slight-white: #d9d9d9;
-  --light-grey: #7b7b7b;
-  --dark-grey: #2c2c2c;
-  --slight-black: #1e1e1e;
-}
-
-* {
-  font-family: system-ui;
+    font-family: system-ui;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+    margin: 0;
+    overflow: hidden;
 }
 
-video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
+#video {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    z-index: 0;
 }
 
-.menu {
-  position: fixed;
-  z-index: 3;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 75px;
-  height: 50px;
-  border-radius: 15px;
-  background: var(--slight-black);
-  margin-bottom: 25px;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.3s ease-in-out;
+button {
+    position: fixed;
+    inset: 90% 0 0 0;
+    margin: auto;
+    height: 50px;
+    width: 100px;
+    background-color: #1e1e1e;
+    border-radius: 15px;
+    cursor: pointer;
+    border: none;
+    z-index: 2;
+    transition: background-color 0.1s, height 0.1s, width 0.1s ease-in-out;
 }
 
-.menu:hover {
-  background-color: var(--dark-grey);
+button:hover {
+    background-color: #2c2c2c;
 }
 
-.menu:active {
-  -webkit-tap-highlight-color: transparent;
+button:active {
+    height: 45px;
+    width: 90px;
 }
 
-.menuOverlay {
-  position: absolute;
-  z-index: 1;
-  inset: 25px 25px 100px 25px;
-  border-radius: 25px;
-  background: var(--slight-black);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+div.menu {
+    position: absolute;
+    inset: 0 0 0 0;
+    background-color: #1e1e1e;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.1s ease-in-out;
 }
 
-.menuOverlay.active {
-  opacity: 1;
+div.badgeLevel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.overlayContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+div.badgeLevel img {
+    background-color: #2c2c2c;
+    border-radius: 100%;
+    padding: 25px;
 }
 
-.menuBadge {
-  min-width: 256px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background: var(--dark-grey);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: content-box;
-  margin-top: 50px;
+#level {
+    position: absolute;
+    color: #7b7b7b;
+    font: 1000 25px/25px system-ui;
 }
 
-.menuBadge img {
-  width: 75%;
-  aspect-ratio: 1/1;
+div.progressBar {
+    background-color: #2c2c2c;
+    border-radius: 25px;
+    padding: 5px 25px;
+    margin: 25px 0;
 }
 
-.badgeLvl {
-  position: absolute;
-  font: 900 40px/48px system-ui;
-  color: var(--dark-grey);
+#progress {
+    color: #d9d9d9;
 }
 
-.xp {
-  background-color: var(--dark-grey);
-  border-radius: 25px;
-  padding: 5px 25px;
-  margin: 25px 0;
+#required {
+    color: #7b7b7b;
 }
 
-.xp .value {
-  color: white;
-}
-
-.xp .required {
-  color: var(--light-grey);
-}
-
-.menu * {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
-}
-
-.menu .icon1 {
-  opacity: 1;
-}
-
-.badgeGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-  grid-auto-rows: 50px;
-  grid-gap: 5px;
-  width: 50%;
-  aspect-ratio: 1/1;
-  overflow: auto;
-  margin-bottom: 50px;
-  padding-right: 5px;
-  scroll-snap-type: y mandatory;
-}
-
-.gridItem {
-  width: 100%;
-  border-radius: 5px;
-  background: var(--dark-grey);
-  scroll-snap-align: start;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 128px;
-  background: var(--dark-grey);
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 128px;
-  background: var(--slight-white) content-box;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
+#buttonIcon {
+    position: fixed;
+    inset: 90% 0 0 0;
+    margin: auto;
+    z-index: 4;
+    pointer-events: none;
+    transition: opacity 0.1s ease-in-out;
 }
